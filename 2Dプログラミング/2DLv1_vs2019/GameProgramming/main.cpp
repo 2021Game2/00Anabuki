@@ -4,6 +4,8 @@
 #include "GLFW/glfw3.h"
 #include "Update.h"
 
+//#define FULLSCREEN	//フルスクリーンにする
+
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
@@ -80,7 +82,11 @@ int main(void)
 		return -1;
 
 	/* Create a windowed mode window and its OpenGL context */
+#ifdef FULLSCREEN
+	window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello World", glfwGetPrimaryMonitor(), NULL);
+#else
 	window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello World", NULL, NULL);
+#endif
 	if (!window)
 	{
 		glfwTerminate();
@@ -110,7 +116,7 @@ int main(void)
 
 	// ウィンドウのサイズ変更時に呼び出す処理の登録
 	glfwSetWindowSizeCallback(window, reshape);
-	reshape(window, 800, 600);
+	reshape(window, WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	//ライトの設定（3D必要 2D不要）
 	//固定シェーダー用
@@ -131,6 +137,12 @@ int main(void)
 
 		/* Poll for and process events */
 		glfwPollEvents();
+
+		//ESCキーでゲーム終了
+		int state = glfwGetKey(window, GLFW_KEY_ESCAPE);
+		if (state == GLFW_PRESS) {
+			break;
+		}
 	}
 
 	glfwTerminate();
