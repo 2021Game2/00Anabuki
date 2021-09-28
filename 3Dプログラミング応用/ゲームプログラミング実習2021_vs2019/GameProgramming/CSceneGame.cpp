@@ -19,6 +19,8 @@ CSceneGame::~CSceneGame() {
 }
 
 void CSceneGame::Init() {
+	mBillBoard.Set(CVector(0.0f, 5.0f, 0.0f), 1.0f, 1.0f);
+
 	//テキストフォントの読み込みと設定
 	mFont.LoadTexture("FontG.png", 1, 4096 / 64);
 
@@ -46,6 +48,18 @@ void CSceneGame::Init() {
 	mEnemy.mPosition = CVector(7.0f, 0.0f, 0.0f);
 	mEnemy.ChangeAnimation(2, true, 200);
 
+	//カメラのパラメータを作成する
+	CVector e, c, u;//視点、注視点、上方向
+	//視点を求める
+	e = CVector(1.0f, 2.0f, 10.0f);
+	//注視点を求める
+	c = CVector();
+	//上方向を求める
+	u = CVector(0.0f, 1.0f, 0.0f);
+
+	//カメラクラスの設定
+	Camera.Set(e, c, u);
+
 }
 
 
@@ -59,18 +73,18 @@ void CSceneGame::Update() {
 	//衝突処理
 	CCollisionManager::Get()->Collision();
 
-	//カメラのパラメータを作成する
-	CVector e, c, u;//視点、注視点、上方向
-	//視点を求める
-	e = CVector(1.0f, 2.0f, 10.0f);
-	//注視点を求める
-	c = CVector();
-	//上方向を求める
-	u = CVector(0.0f, 1.0f, 0.0f);
+	////カメラのパラメータを作成する
+	//CVector e, c, u;//視点、注視点、上方向
+	////視点を求める
+	//e = CVector(1.0f, 2.0f, 10.0f);
+	////注視点を求める
+	//c = CVector();
+	////上方向を求める
+	//u = CVector(0.0f, 1.0f, 0.0f);
 
 	//カメラクラスの設定
-	Camera.Set(e, c, u);
-	Camera.Render();
+//	Camera.Set(e, c, u);
+//	Camera.Render();
 
 	//X軸＋回転
 	if (CKey::Push('K')) {
@@ -88,7 +102,14 @@ void CSceneGame::Update() {
 	}
 
 	//行列設定
-	glMultMatrixf(Matrix.mF);
+//	glMultMatrixf(Matrix.mF);
+
+	Camera.mEye = CVector(1.0f, 2.0f, 10.0f) * Matrix;
+
+	Camera.Render();
+
+	mBillBoard.Update();
+	mBillBoard.Render();
 
 	//モデル描画
 //	CRes::sModelX.Render();
