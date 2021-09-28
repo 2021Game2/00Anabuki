@@ -25,6 +25,10 @@ public:
 	void Render();
 	//•`‰æ
 	void Render(const CMatrix &m);
+
+	CTriangle()
+		: mMaterialIdx(0)
+	{}
 };
 
 #endif

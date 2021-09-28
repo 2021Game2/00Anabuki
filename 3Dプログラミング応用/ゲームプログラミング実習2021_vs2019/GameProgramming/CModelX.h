@@ -14,6 +14,7 @@
 
 class CModelX;	// CModelXクラスの宣言
 class CMaterial;	//クラスの宣言
+//#include "CMaterial.h"
 
 /*
  CAnimationKey
@@ -25,6 +26,9 @@ public:
 	float mTime;
 	//行列
 	CMatrix mMatrix;
+	CAnimationKey()
+		: mTime(0)
+	{}
 };
 /*
  CAnimation
@@ -65,7 +69,7 @@ public:
 	~CAnimationSet() {
 		SAFE_DELETE_ARRAY(mpName);
 		//アニメーション要素の削除
-		for (int i = 0; i < mAnimation.size(); i++) {
+		for (unsigned int i = 0; i < mAnimation.size(); i++) {
 			delete mAnimation[i];
 		}
 	}
@@ -104,7 +108,7 @@ public:
 	int mVertexNum;	//頂点数
 	CVector* mpVertex;	//頂点データ
 	int mFaceNum;	//面数
-	int* mpVertexIndex;	//面を構成する頂点番号
+	unsigned int* mpVertexIndex;	//面を構成する頂点番号
 	int mNormalNum;	//法線数
 	CVector* mpNormal;//法線データ
 
@@ -146,7 +150,7 @@ public:
 		SAFE_DELETE_ARRAY(mpAnimateNormal);
 		SAFE_DELETE_ARRAY(mpTextureCoords);
 		//スキンウェイトの削除
-		for (int i = 0; i < mSkinWeights.size(); i++) {
+		for (unsigned int i = 0; i < mSkinWeights.size(); i++) {
 			delete mSkinWeights[i];
 		}
 	}
@@ -210,22 +214,11 @@ public:
 	CModelX()
 		: mpPointer(nullptr)
 		, mpSkinningMatrix(nullptr)
-	{}
-
-	~CModelX() {
-		if (mFrame.size() > 0)
-		{
-			delete mFrame[0];
-		}
-		for (int i = 0; i < mAnimationSet.size(); i++) {
-			delete mAnimationSet[i];
-		}
-		//マテリアルの解放
-		for (int i = 0; i < mMaterial.size(); i++) {
-			delete mMaterial[i];
-		}
-		SAFE_DELETE_ARRAY(mpSkinningMatrix);
+	{
+		memset(mToken, 0, sizeof(mToken));
 	}
+
+	~CModelX();
 
 	void Load(char* file);
 

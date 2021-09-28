@@ -46,7 +46,7 @@ void CModel::Load(char *obj, char *mtl) {
 		//データを分割する
 		char str[4][64] = { "", "", "", "" };
 		//文字列からデータを4つ変数へ代入する
-		sscanf(buf, "%s %s %s %s", str[0], str[1], str[2], str[3]);
+		(void)sscanf(buf, "%s %s %s %s", str[0], str[1], str[2], str[3]);
 		//先頭がnewmtlの時、マテリアルを追加する
 		if (strcmp(str[0], "newmtl") == 0) {
 			CMaterial *pm = new CMaterial();
@@ -97,7 +97,7 @@ void CModel::Load(char *obj, char *mtl) {
 		char str[4][64] = { "", "", "", "" };
 		//文字列からデータを4つ変数へ代入する
 		//sscanf(文字列, 変換指定子, 変数)
-		sscanf(buf, "%s %s %s %s", str[0], str[1], str[2], str[3]);
+		(void)sscanf(buf, "%s %s %s %s", str[0], str[1], str[2], str[3]);
 		//文字列の比較
 		//strcmp(文字列1, 文字列2)
 		//文字列1と文字列2が同じ時0、異なる時0以外を返す
@@ -181,11 +181,11 @@ void CModel::Load(char *obj, char *mtl) {
 	//全てのテクスチャマッピングの値をマテリアルの順番に保存する
 	mpTextureCoord = new float[mTriangles.size() * 6];
 
-	int v = 0, t = 0;
+	unsigned int v = 0, t = 0;
 	//マテリアル毎に頂点配列に設定する
-	for (int i = 0; i < mpMaterials.size(); i++) {
+	for (unsigned int i = 0; i < mpMaterials.size(); i++) {
 		//全ての三角形を比較
-		for (int j = 0; j < mTriangles.size(); j++) {
+		for (unsigned int j = 0; j < mTriangles.size(); j++) {
 			//マテリアル番号が一致する時
 			if (i == mTriangles[j].mMaterialIdx) {
 				//頂点配列に設定する
@@ -228,7 +228,7 @@ void CModel::Load(char *obj, char *mtl) {
 //描画
 void CModel::Render() {
 	//可変長配列の要素数だけ繰り返し
-	for (int i = 0; i < mTriangles.size(); i++) {
+	for (unsigned int i = 0; i < mTriangles.size(); i++) {
 		//マテリアルの適用
 		mpMaterials[mTriangles[i].mMaterialIdx]->Enabled();
 		//可変長配列に添え字でアクセスする
@@ -240,7 +240,7 @@ void CModel::Render() {
 
 CModel::~CModel()
 {
-	for (int i = 0; i < mpMaterials.size(); i++)
+	for (unsigned int i = 0; i < mpMaterials.size(); i++)
 	{
 		delete mpMaterials[i];
 	}
@@ -281,7 +281,7 @@ void CModel::Render(const CMatrix &m)
 	glTexCoordPointer(2, GL_FLOAT, 0, mpTextureCoord);
 	int first = 0; //描画位置
 	//マテリアル毎に描画する
-	for (int i = 0; i < mpMaterials.size(); i++) {
+	for (unsigned int i = 0; i < mpMaterials.size(); i++) {
 		//マテリアルを適用する
 		mpMaterials[i]->Enabled();
 		//描画位置からのデータで三角形を描画します
