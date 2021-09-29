@@ -40,7 +40,12 @@ public:
 		file[0] = 0;
 		if (mNum == 0) {
 			HRESULT hr;
-			CoInitializeEx(NULL, COINIT_MULTITHREADED);
+			hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
+			if (FAILED(hr))
+			{
+				mpXAudio = 0;
+				return;
+			}
 			hr = XAudio2Create(&mpXAudio, 0, XAUDIO2_DEFAULT_PROCESSOR);
 			if (FAILED(hr))
 			{
@@ -72,6 +77,7 @@ public:
 			strcpy(file, filename);
 			MMCKINFO mmckinfo; PCMWAVEFORMAT pcmwf; MMRESULT mmret;
 			memset(&g_mmioinfo, 0x00, sizeof(g_mmioinfo));
+			memset(&pcmwf, 0x00, sizeof(pcmwf));
 			g_hmmio = mmioOpen(const_cast<TCHAR *>(filename), &g_mmioinfo, MMIO_READ);
 			if (g_hmmio == NULL) return false;
 			memset(&g_riffchunkinfo, 0x00, sizeof(g_riffchunkinfo));

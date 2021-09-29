@@ -4,11 +4,13 @@
 #include "CXPlayer.h"
 #include "CXEnemy.h"
 #include "CBillBoard2.h"
+#include "CSound.h"
 
 /*
 ゲームのシーン
 */
 class CSceneGame : public CScene {
+	CSound mJump;
 	CBillBoard2 mBillBoard;
 public:
 	//キャラクタのインスタンス

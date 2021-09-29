@@ -19,6 +19,8 @@ CSceneGame::~CSceneGame() {
 }
 
 void CSceneGame::Init() {
+	mJump.Load("jump.wav");
+
 	mBillBoard.Set(CVector(0.0f, 5.0f, 0.0f), 1.0f, 1.0f);
 
 	//テキストフォントの読み込みと設定
@@ -99,6 +101,7 @@ void CSceneGame::Update() {
 	}
 	if (CKey::Push('J')) {
 		Matrix = Matrix * CMatrix().RotateY(-1);
+		mJump.Play();
 	}
 
 	//行列設定
