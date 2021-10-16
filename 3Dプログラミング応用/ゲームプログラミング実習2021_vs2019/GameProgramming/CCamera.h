@@ -1,11 +1,14 @@
 #ifndef CCAMERA_H
 #define CCAMERA_H
 #include "CVector.h"
+#include "CMatrix.h"
 /*
 カメラクラス
 */
 class CCamera {
+	static CMatrix sCameraMatrix;
 public:
+	static CMatrix& CameraMatrix();
 	//視点
 	CVector mEye;
 	//注視点

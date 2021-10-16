@@ -1,5 +1,5 @@
-#ifndef CBILLBOARD_H
-#define CBILLBOARD_H
+#ifndef CBILLBOARD2_H
+#define CBILLBOARD2_H
 #include "CCharacter.h"
 /*
 ビルボードクラス

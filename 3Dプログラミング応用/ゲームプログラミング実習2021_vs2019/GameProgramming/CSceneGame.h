@@ -3,7 +3,7 @@
 #include "CScene.h"
 #include "CXPlayer.h"
 #include "CXEnemy.h"
-#include "CBillBoard2.h"
+#include "CBillBoard3.h"
 #include "CSound.h"
 
 /*
@@ -11,7 +11,7 @@
 */
 class CSceneGame : public CScene {
 	CSound mJump;
-	CBillBoard2 mBillBoard;
+	CBillBoard3 mBillBoard;
 public:
 	//キャラクタのインスタンス
 	CXPlayer mPlayer;

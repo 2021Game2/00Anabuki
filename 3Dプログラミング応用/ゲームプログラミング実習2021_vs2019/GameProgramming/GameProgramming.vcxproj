@@ -96,6 +96,7 @@
   <ItemGroup>
     <ClCompile Include="CBillBoard.cpp" />
     <ClCompile Include="CBillboard2.cpp" />
+    <ClCompile Include="CBillboard3.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCharacter.cpp" />
@@ -134,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="CBillBoard.h" />
     <ClInclude Include="CBillboard2.h" />
+    <ClInclude Include="CBillboard3.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCharacter.h" />
