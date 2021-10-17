@@ -43,6 +43,7 @@ void CCamera::LookAt(const CVector& eye, const CVector& center, const CVector& u
 	sCameraMatrix.mM[2][1] = z.mY;
 	sCameraMatrix.mM[2][2] = z.mZ;
 	//モデルビュー行列の設定
+	//カメラ行列の逆行列作成
 	sModelViewMatrix = sCameraMatrix;
 	sModelViewMatrix.mM[0][1] = sCameraMatrix.mM[1][0];
 	sModelViewMatrix.mM[0][2] = sCameraMatrix.mM[2][0];
