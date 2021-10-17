@@ -60,7 +60,7 @@ void CSceneGame::Init() {
 	u = CVector(0.0f, 1.0f, 0.0f);
 
 	//カメラクラスの設定
-	Camera.Set(e, c, u);
+	//Camera.Set(e, c, u);
 
 }
 
@@ -74,19 +74,6 @@ void CSceneGame::Update() {
 
 	//衝突処理
 	CCollisionManager::Get()->Collision();
-
-	////カメラのパラメータを作成する
-	//CVector e, c, u;//視点、注視点、上方向
-	////視点を求める
-	//e = CVector(1.0f, 2.0f, 10.0f);
-	////注視点を求める
-	//c = CVector();
-	////上方向を求める
-	//u = CVector(0.0f, 1.0f, 0.0f);
-
-	//カメラクラスの設定
-//	Camera.Set(e, c, u);
-//	Camera.Render();
 
 	//X軸＋回転
 	if (CKey::Push('K')) {
@@ -104,10 +91,8 @@ void CSceneGame::Update() {
 		mJump.Play();
 	}
 
-	//行列設定
-//	glMultMatrixf(Matrix.mF);
 
-	Camera.mEye = CVector(1.0f, 2.0f, 10.0f) * Matrix;
+	Camera.LookAt(CVector(1.0f, 2.0f, 10.0f) * Matrix, CVector(), CVector(0.0f, 1.0f, 0.0f));
 
 	Camera.Render();
 

@@ -7,18 +7,25 @@
 */
 class CCamera {
 	static CMatrix sCameraMatrix;
-public:
-	static CMatrix& CameraMatrix();
+	static CMatrix sModelViewMatrix;
 	//視点
 	CVector mEye;
 	//注視点
 	CVector mCenter;
 	//上方向
 	CVector mUp;
+public:
+	static CMatrix& CameraMatrix();
+
+	CVector& Eye();
+
 	//カメラの設定
 	//Set(視点, 注視点, 上方向)
 	void Set(const CVector &eye, const CVector &center,
 		const CVector &up);
+	//LookAt(視点, 注視点, 上方向)
+	void LookAt(const CVector& eye, const CVector& center,
+		const CVector& up);
 	//カメラ適用
 	void Render();
 };

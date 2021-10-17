@@ -33,28 +33,11 @@ void CBillBoard3::Set(CVector pos, float w, float h) {
 
 
 void CBillBoard3::Update() {
-
-	////カメラの行列を取得
-	//glGetFloatv(GL_MODELVIEW_MATRIX, mMatrixModelView.mF);
-	////カメラの逆行列を取得
-	//mCameraInverse = mMatrixModelView.Inverse();
-	////移動の要素を削除
-	//mCameraInverse.mM[3][0] = mCameraInverse.mM[3][1] = mCameraInverse.mM[3][2] = 0.0f;
-
 	CMatrix scale;
 	mMatrix.Identity();
 	mMatrix.Translate(mPosition.mX, mPosition.mY, mPosition.mZ);
 	scale.Scale(mScale.mX, mScale.mY, mScale.mZ);
 	mMatrix = scale * CCamera::CameraMatrix() * mMatrix;
-
-	////カメラへの方向ベクトルの取得
-	//CVector dir = Camera.mEye - mPosition;
-	////Y軸の回転値を求める
-	//mRotation.mY = atan2f(dir.mX, dir.mZ) * 180.0f / M_PI;
-	////X軸の回転値を求める
-	//mRotation.mX = asinf(-dir.mY / dir.Length()) * 180.0f / M_PI;
-	////行列の更新
-	//CTransform::Update();
 }
 
 void CBillBoard3::Render()
