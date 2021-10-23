@@ -88,13 +88,13 @@ void CSceneGame::Update() {
 	}
 	if (CKey::Push('J')) {
 		Matrix = Matrix * CMatrix().RotateY(-1);
-		mJump.Play();
+//		mJump.Play();
 	}
 
 
-	Camera.LookAt(CVector(1.0f, 2.0f, 10.0f) * Matrix, CVector(), CVector(0.0f, 1.0f, 0.0f));
+	CCamera::Camera().LookAt(CVector(1.0f, 2.0f, 10.0f) * Matrix, CVector(), CVector(0.0f, 1.0f, 0.0f));
 
-	Camera.Render();
+	CCamera::Camera().Render();
 
 	mBillBoard.Update();
 	mBillBoard.Render();
@@ -115,6 +115,9 @@ void CSceneGame::Update() {
 
 	//2DÇÃï`âÊèIóπ
 	CUtil::End2D();
+
+	mEnemy.Render2D();
+	mPlayer.Render2D();
 
 	return;
 }

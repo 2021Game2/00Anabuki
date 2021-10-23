@@ -1,4 +1,6 @@
 #include "CXEnemy.h"
+#include "CCamera.h"
+#include "CUtil.h"
 
 CXEnemy::CXEnemy()
 	: mColSphereBody(this, nullptr, CVector(0.5f, -1.0f, 0.0f), 1.0f)
@@ -7,6 +9,8 @@ CXEnemy::CXEnemy()
 	, mColSphereSword1(this, nullptr, CVector(0.5f, 2.5f, -0.2f), 0.5f)
 	, mColSphereSword2(this, nullptr, CVector(0.3f, 1.5f, -0.2f), 0.5f)
 {
+	mFont.LoadTexture("FontG.png", 1, 4096 / 64);
+
 }
 
 void CXEnemy::Init(CModelX* model)
@@ -50,3 +54,21 @@ void CXEnemy::Collision(CCollider* m, CCollider* o)
 		}
 	}
 }
+
+void CXEnemy::Render2D()
+{
+	CVector ret;
+
+	CCamera::Camera().WorldToScreen(&ret, mPosition);
+
+	//2Dï`âÊäJén
+	CUtil::Start2D(0, 800, 0, 600);
+
+	//ï∂éöóÒÇÃï`âÊ
+	mFont.DrawString("TEST", ret.mX, ret.mY, 8, 16);
+
+
+	//2DÇÃï`âÊèIóπ
+	CUtil::End2D();
+}
+

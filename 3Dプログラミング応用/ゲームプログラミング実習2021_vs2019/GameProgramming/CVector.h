@@ -18,7 +18,7 @@ public:
 	//CVector(X座標, Y座標, Z座標)
 	CVector(float x, float y, float z);
 	//CVector * CMatrixの結果をCVectorで返す
-	CVector operator*(const CMatrix &m);
+	CVector operator*(const CMatrix &m) const;
 	//-演算子のオーバーロード
 	//CVector - CVector の演算結果を返す
 	CVector operator-(const CVector &v);

@@ -21,7 +21,7 @@ CVector::CVector(float x, float y, float z)
 }
 
 //CVector * CMatrix‚ÌŒ‹‰Ê‚ðCVector‚Å•Ô‚·
-CVector CVector::operator*(const CMatrix &m)
+CVector CVector::operator*(const CMatrix &m) const 
 {
 	//Š|‚¯ŽZ‚ÌŒ‹‰Ê‚ðCVectorŒ^‚Ì’l‚Å•Ô‚·
 	return CVector(

@@ -6,8 +6,10 @@
 カメラクラス
 */
 class CCamera {
-	static CMatrix sCameraMatrix;
-	static CMatrix sModelViewMatrix;
+	static CCamera CCamera::sCamera;
+	static CMatrix sMatrixCamera;
+	static CMatrix sMatrixModelView;
+	static CMatrix sMatrixProjection;
 	//視点
 	CVector mEye;
 	//注視点
@@ -15,6 +17,7 @@ class CCamera {
 	//上方向
 	CVector mUp;
 public:
+	static CCamera& Camera();
 	static CMatrix& CameraMatrix();
 
 	CVector& Eye();
@@ -28,6 +31,8 @@ public:
 		const CVector& up);
 	//カメラ適用
 	void Render();
+	bool CCamera::WorldToScreen(CVector* pOut, const CVector& pos);
+
 };
 
 //カメラの外部参照

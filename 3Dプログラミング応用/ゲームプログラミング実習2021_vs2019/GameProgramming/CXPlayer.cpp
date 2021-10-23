@@ -1,5 +1,7 @@
 #include "CXPlayer.h"
 #include "CKey.h"
+#include "CUtil.h"
+#include "CCamera.h"
 
 CXPlayer::CXPlayer()
 	: mColSphereBody(this, nullptr, CVector(), 0.5f)
@@ -9,6 +11,7 @@ CXPlayer::CXPlayer()
 	//タグにプレイヤーを設定します
 	mTag = EPLAYER;
 	mColSphereSword.mTag = CCollider::ESWORD;
+	mFont.LoadTexture("FontG.png", 1, 4096 / 64);
 }
 
 void CXPlayer::Init(CModelX* model)
@@ -63,4 +66,21 @@ void CXPlayer::Update()
 		}
 	}
 	CXCharacter::Update();
+}
+
+void CXPlayer::Render2D()
+{
+	CVector ret;
+
+	CCamera::Camera().WorldToScreen(&ret, mPosition);
+
+	//2D描画開始
+	CUtil::Start2D(0, 800, 0, 600);
+
+	//文字列の描画
+	mFont.DrawString("TEST", ret.mX, ret.mY, 8, 16);
+
+
+	//2Dの描画終了
+	CUtil::End2D();
 }

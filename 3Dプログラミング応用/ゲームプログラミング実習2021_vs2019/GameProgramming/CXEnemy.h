@@ -3,9 +3,11 @@
 
 #include "CXCharacter.h"
 #include "CCollider.h"
+#include "CText.h"
 
 class CXEnemy : public CXCharacter
 {
+	CText mFont;
 	CCollider mColSphereSword0;	//剣
 	CCollider mColSphereSword1;	//剣
 	CCollider mColSphereSword2;	//剣
@@ -24,7 +26,7 @@ public:
 	//衝突処理
 	//m:自分のコライダ o:相手のコライダ
 	void Collision(CCollider* m, CCollider* o);
-
+	void CXEnemy::Render2D();
 };
 
 #endif

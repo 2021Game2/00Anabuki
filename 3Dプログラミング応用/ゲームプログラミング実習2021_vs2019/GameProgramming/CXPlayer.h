@@ -3,9 +3,11 @@
 
 #include "CXCharacter.h"
 #include "CCollider.h"
+#include "CText.h"
 
 class CXPlayer : public CXCharacter
 {
+	CText mFont;
 public:
 	//ƒRƒ‰ƒCƒ_‚ÌéŒ¾
 	CCollider mColSphereBody;	//‘Ì
@@ -20,6 +22,8 @@ public:
 	void Init(CModelX* model);
 
 	void Update();
+
+	void CXPlayer::Render2D();
 };
 
 #endif
