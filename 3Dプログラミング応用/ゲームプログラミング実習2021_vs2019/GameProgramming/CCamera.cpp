@@ -79,6 +79,7 @@ bool CCamera::WorldToScreen(CVector* pOut, const CVector& pos)
 {
 	//ç¿ïWïœä∑
 //	CVector	screen_pos = mMatrix * pos;
+	sMatrixProjection.mM[3][2] = 0.0f;
 	CMatrix matrix = sMatrixModelView * sMatrixProjection;
 	CVector	screen_pos = pos * matrix;
 
