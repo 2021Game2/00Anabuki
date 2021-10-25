@@ -70,25 +70,23 @@ void CCamera::Render() {
 	//	mUp.mX, mUp.mY, mUp.mZ);
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(sMatrixModelView.mF);
-	glGetFloatv(GL_MODELVIEW_MATRIX, sMatrixModelView.mF);
+	glMultMatrixf(sMatrixModelView.mF);
+//	glGetFloatv(GL_MODELVIEW_MATRIX, sMatrixModelView.mF);
 	glGetFloatv(GL_PROJECTION_MATRIX, sMatrixProjection.mF);
 }
 
 bool CCamera::WorldToScreen(CVector* pOut, const CVector& pos)
 {
 	//座標変換
-//	CVector	screen_pos = mMatrix * pos;
-	sMatrixProjection.mM[3][2] = 0.0f;
-	CMatrix matrix = sMatrixModelView * sMatrixProjection;
-	CVector	screen_pos = pos * matrix;
+	CVector modelview_pos = pos * sMatrixModelView;
+	CVector	screen_pos = modelview_pos * sMatrixProjection;
 
 	//画面外なのでリターン
-	if (screen_pos.mZ <= 0.0f) {
+	if (modelview_pos.mZ >= 0.0f) {
 		return false;
 	}
 	//座標調整
-	screen_pos = screen_pos * (1.0f / screen_pos.mZ);
+	screen_pos = screen_pos / -modelview_pos.mZ;
 
 	//	printf("%f,%f,%f\n", screen_pos.mX, screen_pos.mY, screen_pos.mZ);
 

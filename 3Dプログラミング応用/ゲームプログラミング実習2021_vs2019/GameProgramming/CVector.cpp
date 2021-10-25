@@ -72,3 +72,8 @@ void CVector::operator+=(const CVector& v)
 	mY += v.mY;
 	mZ += v.mZ;
 }
+
+CVector CVector::operator/(const float& f) const
+{
+	return CVector(mX/f, mY/f, mZ/f);
+}
