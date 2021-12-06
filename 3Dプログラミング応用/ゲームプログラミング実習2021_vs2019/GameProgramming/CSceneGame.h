@@ -5,13 +5,14 @@
 #include "CXEnemy.h"
 #include "CBillBoard3.h"
 #include "CSound.h"
-
+#include "CAddAni.h"
 /*
 ゲームのシーン
 */
 class CSceneGame : public CScene {
 	CSound mJump;
 	CBillBoard3 mBillBoard;
+	CAddAnimation mAddAni;
 public:
 	//キャラクタのインスタンス
 	CXPlayer mPlayer;

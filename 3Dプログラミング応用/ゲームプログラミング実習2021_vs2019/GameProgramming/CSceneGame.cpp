@@ -72,6 +72,8 @@ void CSceneGame::Update() {
 	//“G‚ÌXV
 	mEnemy.Update();
 
+	mAddAni.Update();
+
 	//Õ“Ëˆ—
 	CCollisionManager::Get()->Collision();
 
@@ -104,6 +106,8 @@ void CSceneGame::Update() {
 	mPlayer.Render();
 	//“G•`‰æ
 	mEnemy.Render();
+
+	mAddAni.Render();
 
 	//ƒRƒ‰ƒCƒ_‚Ì•`‰æ
 	CCollisionManager::Get()->Render();

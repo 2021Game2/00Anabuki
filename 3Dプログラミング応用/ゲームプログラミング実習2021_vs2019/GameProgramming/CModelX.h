@@ -221,6 +221,8 @@ public:
 	~CModelX();
 
 	void Load(char* file);
+	//ファイルからアニメーションセットを追加する
+	void AddAnimationSet(char* file);
 
 	//単語の取り出し
 	void GetToken();
