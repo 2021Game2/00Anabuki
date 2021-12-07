@@ -1,4 +1,5 @@
 #include "CAddAni.h"
+#include "CKey.h"
 
 CModelX CAddAnimation::mModel;
 
@@ -17,12 +18,20 @@ CAddAnimation::CAddAnimation()
 	mRotation.mY = 0.0f;
 	mScale = CVector(3.0f, 3.0f, 3.0f);
 	Init(&mModel);
-	ChangeAnimation(1, true, 250);
+	ChangeAnimation(0, true, 250);
 	//çáê¨çsóÒÇÃê›íË
 	mColHit.mpMatrix = &mpCombinedMatrix[4];
 }
 
 void CAddAnimation::Update()
 {
+	if (CKey::Once('1'))
+	{
+		ChangeAnimation(1, true, 250);
+	}
+	else if (CKey::Once('0'))
+	{
+		ChangeAnimation(0, true, 250);
+	}
 	CXCharacter::Update();
 }
