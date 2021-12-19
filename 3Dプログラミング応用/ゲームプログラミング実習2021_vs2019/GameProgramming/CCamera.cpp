@@ -65,13 +65,13 @@ void CCamera::LookAt(const CVector& eye, const CVector& center, const CVector& u
 
 void CCamera::Render() {
 	//行列のモードをモデルビューにする
-	//gluLookAt(mEye.mX, mEye.mY, mEye.mZ,
-	//	mCenter.mX, mCenter.mY, mCenter.mZ,
-	//	mUp.mX, mUp.mY, mUp.mZ);
+	gluLookAt(mEye.mX, mEye.mY, mEye.mZ,
+		mCenter.mX, mCenter.mY, mCenter.mZ,
+		mUp.mX, mUp.mY, mUp.mZ);
 
-	glMatrixMode(GL_MODELVIEW);
-	glMultMatrixf(sMatrixModelView.mF);
-//	glGetFloatv(GL_MODELVIEW_MATRIX, sMatrixModelView.mF);
+//	glMatrixMode(GL_MODELVIEW);
+//	glMultMatrixf(sMatrixModelView.mF);
+	glGetFloatv(GL_MODELVIEW_MATRIX, sMatrixModelView.mF);
 	glGetFloatv(GL_PROJECTION_MATRIX, sMatrixProjection.mF);
 }
 
