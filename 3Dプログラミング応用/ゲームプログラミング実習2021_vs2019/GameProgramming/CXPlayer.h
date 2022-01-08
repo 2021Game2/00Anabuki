@@ -4,15 +4,18 @@
 #include "CXCharacter.h"
 #include "CCollider.h"
 #include "CText.h"
+#include "CColliderCapsule.h"
 
 class CXPlayer : public CXCharacter
 {
 	CText mFont;
+	CColliderCapsule mColCapsule;
 public:
 	//ƒRƒ‰ƒCƒ_‚ÌéŒ¾
 	CCollider mColSphereBody;	//‘Ì
 	CCollider mColSphereHead;	//“ª
 	CCollider mColSphereSword;	//Œ•
+
 
 	CXPlayer();
 

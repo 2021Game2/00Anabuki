@@ -8,6 +8,7 @@ CXEnemy::CXEnemy()
 	, mColSphereSword0(this, nullptr, CVector(0.7f, 3.5f, -0.2f), 0.5f)
 	, mColSphereSword1(this, nullptr, CVector(0.5f, 2.5f, -0.2f), 0.5f)
 	, mColSphereSword2(this, nullptr, CVector(0.3f, 1.5f, -0.2f), 0.5f)
+	, mColCapsule(this, nullptr, CVector(0.0f, -2.5f, 0.0f), CVector(0.0f, 2.5f, 0.0f), 1.7)
 {
 	mFont.LoadTexture("FontG.png", 1, 4096 / 64);
 
@@ -24,6 +25,8 @@ void CXEnemy::Init(CModelX* model)
 	mColSphereSword0.mpMatrix = &mpCombinedMatrix[26];
 	mColSphereSword1.mpMatrix = &mpCombinedMatrix[26];
 	mColSphereSword2.mpMatrix = &mpCombinedMatrix[26];
+	//
+	mColCapsule.mpMatrix = &mpCombinedMatrix[1];
 
 	/*
 	mColSphereBody.mpMatrix = &mpCombinedMatrix[8];
@@ -36,6 +39,18 @@ void CXEnemy::Init(CModelX* model)
 
 void CXEnemy::Collision(CCollider* m, CCollider* o)
 {
+	if (m->mType == CCollider::ECAPSUL)
+	{
+		if (o->mType == CCollider::ECAPSUL)
+		{
+			CVector adjust;
+			if (CCollider::CollisionCapsule(m, o, &adjust))
+			{
+				//当たらない位置まで下がる
+				mPosition = mPosition + adjust;
+			}
+		}
+	}
 	if (m->mType == CCollider::ESPHERE)
 	{
 		if (o->mType == CCollider::ESPHERE)
@@ -47,7 +62,7 @@ void CXEnemy::Collision(CCollider* m, CCollider* o)
 					if (CCollider::Collision(m, o))
 					{
 						//30フレームかけてダウンし、繰り返さない
-						ChangeAnimation(11, false, 30);
+//						ChangeAnimation(11, false, 30);
 					}
 				}
 			}

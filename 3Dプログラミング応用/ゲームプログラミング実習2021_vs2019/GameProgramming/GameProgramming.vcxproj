@@ -101,6 +101,7 @@
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCharacter.cpp" />
     <ClCompile Include="CCollider.cpp" />
+    <ClCompile Include="CColliderCapsule.cpp" />
     <ClCompile Include="CColliderLine.cpp" />
     <ClCompile Include="CColliderMesh.cpp" />
     <ClCompile Include="CColliderTriangle.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCharacter.h" />
     <ClInclude Include="CCollider.h" />
+    <ClInclude Include="CColliderCapsule.h" />
     <ClInclude Include="CColliderLine.h" />
     <ClInclude Include="CColliderMesh.h" />
     <ClInclude Include="CColliderTriangle.h" />

@@ -22,6 +22,7 @@ public:
 		ESPHERE,//球コライダ
 		ETRIANGLE,//三角コライダ
 		ELINE, //線分コライダ
+		ECAPSUL, //カプセルコライダ
 	};
 	EType mType;//コライダタイプ
 	//頂点
@@ -54,6 +55,17 @@ public:
 	static bool CollisionTriangleSphere(CCollider *triangle, CCollider *sphere, CVector *adjust);
 	//優先度の変更
 	virtual void ChangePriority();
+
+	//カプセルコライダとカプセルコライダの衝突判定
+	//CollisionCapsule(カプセルコライダ１, カプセルコライダ２, 調整値)
+	//retrun:true（衝突している）false(衝突していない)
+	//調整値:カプセルコライダ１が衝突しない位置まで戻す値
+	static bool CollisionCapsule(CCollider* m, CCollider* o, CVector* adjust);
+	//線と線との最短ベクトルを求める
+	//VectorLineMinDist(線１開始, 線１終了, 線２開始, 線２終了)
+	//return:線と線との最短ベクトル
+	static CVector VectorLineMinDist(const CVector& Start1, const CVector& End1, const CVector& Start2, const CVector& End2);
+
 };
 
 #endif

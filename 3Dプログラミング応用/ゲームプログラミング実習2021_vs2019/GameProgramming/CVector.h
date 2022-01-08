@@ -21,7 +21,8 @@ public:
 	CVector operator*(const CMatrix &m) const;
 	//-演算子のオーバーロード
 	//CVector - CVector の演算結果を返す
-	CVector operator-(const CVector &v);
+	CVector operator-(const CVector& v);
+	CVector operator-(const CVector& v) const;
 	//ベクトルの長さを返す
 	float Length();
 	//内積
